@@ -1,0 +1,2 @@
+class ToyBox < ApplicationRecord
+end
