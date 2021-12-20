@@ -4,20 +4,24 @@ Classes:
 
 Toy Box:
     Attributes: 
-        - Name
-        - Photo
+        - Name: string
+        - Photo: string
 
     Association: 
         - has_many toys
 
 Toy:
     Attributes:
-        - Name
-        - Photo
-        - Price
-        - url
-        - rating
-        - needs repair?
+        - Name: string
+        - Photo: string
+        - Price: string
+        - Brand: string
+        - url: string
+        - rating: integer 
+        - needs repair? boolean
+        - squeaker? boolean
+        - crinkle? boolean
+        - hides treats? boolean
 
     Association:
         - belongs_to toy box
