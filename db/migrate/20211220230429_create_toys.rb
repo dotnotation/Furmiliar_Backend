@@ -11,6 +11,7 @@ class CreateToys < ActiveRecord::Migration[6.1]
       t.boolean :squeaker
       t.boolean :crinkle
       t.boolean :treat
+      t.belongs_to :toy_box, null: false, foreign_key: true
 
       t.timestamps
     end
