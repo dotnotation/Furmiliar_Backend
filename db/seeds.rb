@@ -1,11 +1,11 @@
 ToyBox.create(
     name: "Momo",
-    photo: "https://drive.google.com/file/d/1GAkDtp4RjJoItyGQkgLcqQSv5sauxc0y/view?usp=sharing"
+    photo: "https://cf.ltkcdn.net/dogs/images/orig/127015-686x700-Crested-pup-1.jpg"
 )
 
 ToyBox.create(
     name: "Rootbeer",
-    photo: "https://drive.google.com/file/d/0B_1NZAvk_bCrQ0xZeEJIV3pHMUU/view?usp=sharing&resourcekey=0-ksh-pcJk1RiXJHzhhfoi4A"
+    photo: "https://i.pinimg.com/236x/f0/7d/ed/f07ded93ef5f6e2d287a2606562dc45f.jpg"
 )
 
 Toy.create(
