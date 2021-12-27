@@ -5,12 +5,20 @@ class ToyBoxesController < ApplicationController
   def index
     @toy_boxes = ToyBox.all
 
-    render json: @toy_boxes
+    render json: @toy_boxes, only: [:photo, :name, :id], include: {
+        toys: {
+          except: [:created_at, :updated_at]
+        }
+    }
   end
 
   # GET /toy_boxes/1
   def show
-    render json: @toy_box
+    render json: @toy_box, only: [:photo, :name, :id], include: {
+      toys: {
+        except: [:created_at, :updated_at]
+      }
+    }
   end
 
   # POST /toy_boxes
@@ -35,7 +43,11 @@ class ToyBoxesController < ApplicationController
 
   # DELETE /toy_boxes/1
   def destroy
-    @toy_box.destroy
+    if @toy_box.destroy
+      render json: {message: "Successfully deleted", toy_box: @toy_box}
+    else
+      render json: {message: "Something went wrong"}
+    end
   end
 
   private
