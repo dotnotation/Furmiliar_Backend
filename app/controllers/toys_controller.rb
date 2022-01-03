@@ -18,24 +18,40 @@ class ToysController < ApplicationController
     @toy = Toy.new(toy_params)
 
     if @toy.save
-      render json: @toy, status: :created, location: @toy
+      render json: {
+        status: 201,
+        toy: @toy
+      }, status: :created, location: @toy
     else
-      render json: @toy.errors, status: :unprocessable_entity
+      render json: {
+        status: 422,
+        errors: @toy.errors.full_messages.join(", ")
+      }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /toys/1
   def update
     if @toy.update(toy_params)
-      render json: @toy
+      render json: {
+        status: 204,
+        toy: @toy
+    }
     else
-      render json: @toy.errors, status: :unprocessable_entity
+      render json: {
+        status: 400,
+        errors: @toy.errors.full_messages.join(", ")
+      }, status: :unprocessable_entity
     end
   end
 
   # DELETE /toys/1
   def destroy
-    @toy.destroy
+    if @toy.destroy
+      render json: {message: "Successfully deleted", toy: @toy}
+    else
+      render json: {message: "Someting went wrong"}
+    end
   end
 
   private

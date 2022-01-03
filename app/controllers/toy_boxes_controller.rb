@@ -44,6 +44,7 @@ class ToyBoxesController < ApplicationController
       render json: {
         status: 204,
         toy_box: @toy_box
+      }
     else
       render json: {
         status: 400,
