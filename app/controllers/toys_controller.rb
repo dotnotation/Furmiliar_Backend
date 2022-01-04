@@ -1,17 +1,17 @@
 class ToysController < ApplicationController
   before_action :set_toy, only: [:show, :update, :destroy]
 
-  # GET /toys
-  def index
-    @toys = Toy.all
+  # # GET /toys
+  # def index
+  #   @toys = Toy.all
 
-    render json: @toys
-  end
+  #   render json: @toys
+  # end
 
-  # GET /toys/1
-  def show
-    render json: @toy
-  end
+  # # GET /toys/1
+  # def show
+  #   render json: @toy
+  # end
 
   # POST /toys
   def create
