@@ -26,11 +26,12 @@ class ToyBoxesController < ApplicationController
     @toy_box = ToyBox.new(toy_box_params)
 
     if @toy_box.save
-      render json: {
-        status: 201,
-        toy_box: @toy_box, 
-      }, status: :created, location: @toy_box
-    else
+
+      render json: @toy_box, only: [:photo, :name, :id], include: {
+        toys: {
+          except: [:created_at, :updated_at]
+        }
+      }
       render json: {
         status: 422,
         errors: @toy_box.errors.full_messages.join(", ")
