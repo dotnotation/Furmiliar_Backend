@@ -18,10 +18,11 @@ class ToysController < ApplicationController
     @toy = Toy.new(toy_params)
 
     if @toy.save
-      render json: {
-        status: 201,
-        toy: @toy
-      }, status: :created, location: @toy
+      # render json: {
+      #   status: 201,
+      #   toy: @toy
+      # }, status: :created, location: @toy
+      render json: @toy, except: [:created_at, :updated_at]
     else
       render json: {
         status: 422,
@@ -62,6 +63,6 @@ class ToysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toy_params
-      params.require(:toy).permit(:name, :photo, :price, :brand, :url, :rating, :needs_repair, :squeaker, :crinkle, :treat)
+      params.require(:toy).permit(:name, :photo, :price, :brand, :url, :rating, :needs_repair, :squeaker, :crinkle, :treat, :toy_box_id)
     end
 end
