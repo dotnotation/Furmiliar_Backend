@@ -34,10 +34,11 @@ class ToysController < ApplicationController
   # PATCH/PUT /toys/1
   def update
     if @toy.update(toy_params)
-      render json: {
-        status: 204,
-        toy: @toy
-    }
+    #   render json: {
+    #     status: 204,
+    #     toy: @toy
+    # }
+      render json: @toy, except: [:created_at, :updated_at]
     else
       render json: {
         status: 400,
