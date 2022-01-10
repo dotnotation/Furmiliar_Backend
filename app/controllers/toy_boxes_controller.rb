@@ -44,9 +44,10 @@ class ToyBoxesController < ApplicationController
   # PATCH/PUT /toy_boxes/1
   def update
     if @toy_box.update(toy_box_params)
-      render json: {
-        status: 204,
-        toy_box: @toy_box
+      render json: @toy_box, only: [:photo, :name, :id], include: {
+        toys: {
+          except: [:created_at, :updated_at]
+        }
       }
     else
       render json: {
