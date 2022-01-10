@@ -32,6 +32,7 @@ RSpec.describe "toys", :type => :request do
             parsed_body = JSON.parse(response.body)
             
             expect(parsed_body["name"]).to eq(toy_name)
+            expect(Toy.all.length).to eq(1)
         end
     end
 end
