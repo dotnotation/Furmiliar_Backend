@@ -38,15 +38,29 @@ RSpec.describe "toys", :type => :request do
 
     describe "#destroy" do
         it "removes the selected toy" do
-            
-            toy_box = ToyBox.create(name: "Sample Box")
-
-            toydestroy = toy_box.toys.create(name: "Sample Toy")
-
-            delete "/toys/toydestroy.id", :params => { :toy => {name: toydestroy.name, toy_box_id: toy_box.id} }
+            # check that Toy.all is 0
+            # create a toybox
+            # create a toy associated with that toybox
+            # send the destroy request
+            # check that Toy.all is 0
 
             expect(Toy.all.length).to eq(0)
 
+            toybox = ToyBox.create(name: "Sample Box")
+
+            toy_name = "Sample Toy"
+
+            toy_destory = Toy.create(name: toy_name, toy_box_id: toybox.id)
+
+            delete "/toys/${toy_destroy.id}", :params => {:toy => {name: toy_name, toy_box_id: toybox.id} }
+
+            expect(Toy.all.length).to eq(0)
+
+            # toy = create(:toy)
+            # @toy_box.toys << toy
+            # expect{delete :destroy, id: toy.id, toy_box_id: @toy_box}
+            # to change{@toy_box.toys.count}.by(-1)
+            # expect(response).to redirect_to post_path
         end
     end
 end
