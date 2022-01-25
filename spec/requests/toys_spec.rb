@@ -48,19 +48,12 @@ RSpec.describe "toys", :type => :request do
 
             toybox = ToyBox.create(name: "Sample Box")
 
-            toy_name = "Sample Toy"
+            toy_sample = Toy.create(name: "Sample Toy", toy_box_id: toybox.id)
 
-            toy_destory = Toy.create(name: toy_name, toy_box_id: toybox.id)
-
-            delete "/toys/${toy_destroy.id}", :params => {:toy => {name: toy_name, toy_box_id: toybox.id} }
+            delete "/toys/#{toy_sample.id}", :params => {:toy => {name: toy_sample.name, toy_box_id: toybox.id} }
 
             expect(Toy.all.length).to eq(0)
 
-            # toy = create(:toy)
-            # @toy_box.toys << toy
-            # expect{delete :destroy, id: toy.id, toy_box_id: @toy_box}
-            # to change{@toy_box.toys.count}.by(-1)
-            # expect(response).to redirect_to post_path
         end
     end
 end
