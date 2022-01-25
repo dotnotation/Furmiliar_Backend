@@ -35,4 +35,18 @@ RSpec.describe "toys", :type => :request do
             expect(Toy.all.length).to eq(1)
         end
     end
+
+    describe "#destroy" do
+        it "removes the selected toy" do
+            
+            toy_box = ToyBox.create(name: "Sample Box")
+
+            toydestroy = toy_box.toys.create(name: "Sample Toy")
+
+            delete "/toys/toydestroy.id", :params => { :toy => {name: toydestroy.name, toy_box_id: toy_box.id} }
+
+            expect(Toy.all.length).to eq(0)
+
+        end
+    end
 end
